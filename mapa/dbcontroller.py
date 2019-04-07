@@ -1,6 +1,7 @@
 from mapa.models import Coordenadas_Poligono
 from django.db import models
 from mapa.models import Barrio
+from mapa.models import Denuncia
 
 class Dbcontroller():
     def obtenerDatosBarrio(self):
@@ -20,4 +21,24 @@ class Dbcontroller():
             datos[j]=datos_barrio
             j=j+1
         datos[0]=barrios.count()
+        return datos
+
+    #-- Obtiene la cantidad de denuncias por barrio --#
+    #-- Retorna un arreglo de la siguiente forma --#
+    #-- Posición 0: Cantidad total de barrios (n) --#
+    #-- Posición 1 a n: Por cada barrio se tiene un arreglo con
+    #-- el id del barrio, el nombre del barrio y la cantidad de denuncias por barrio --#
+    def obtenerDenunciasPorBarrio(self):
+        barrios = Barrio.objects.all()
+        datos = {}
+        i = 1
+        for barrio in barrios:
+            denunciasPorBarrio = Denuncia.objects.filter(id_barrio = barrio.id_bario)
+            datos_barrio = {}
+            datos_barrio[0] = barrio.id_bario
+            datos_barrio[1] = barrio.nom_barrio
+            datos_barrio[2] = denunciasPorBarrio.count()
+            datos[i] = datos_barrio
+            i=i+1
+        datos[0] = barrios.count()
         return datos
