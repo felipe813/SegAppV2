@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- <link rel="stylesheet" href="{{STATIC_URL}}css/styles.css"> -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+            {% block container %}{% endblock %}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src ="/static/js/mapa.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxg5OVnIz_OeKAA08v99yQ9Jph1Voa6UQ&callback=initMap"
+    async defer></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDErDcIlauBtE-oTY-wrArgu_LHgVnFeAU&callback=initMap"
+    async defer></script>
+    <script type="text/javascript">
+        var barrios = {{barrios}};
+        var denuncias = {{denuncias}};
+    </script>
+</body>
+</html>

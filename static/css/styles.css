@@ -1,9 +1,9 @@
 body{
-    background: #E6E6E6;  
+    background: #E6E6E6;
 }
 
 .container {
-    background:#fff; 
+    background:#fff;
     box-shadow: 0 0 10px #000;
     border-radius: 10px;
     width: 900px;
@@ -15,7 +15,7 @@ body{
 }
 
 .capas{
-    
+
     border:1px solid #000;
     display: inline-block;
     height: 100%;
