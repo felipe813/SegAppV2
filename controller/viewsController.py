@@ -43,7 +43,7 @@ def login(request):
         print("login : usuario autenticado")
         return index(request)
     else:
-        print("login : usuario iniciará sesión")
+        print("login : usuario iniciara sesion")
         return auth_views.LoginView.as_view(template_name='login.html')(request)
 
 def logout(request):
