@@ -26,9 +26,9 @@ $(function(){
             zoom:15,
             mapTypeId:'roadmap'
         }
-        map = new google.maps.Map($('#mapa').get(0),mapSettings);
+        var map = new google.maps.Map($('#mapa').get(0),mapSettings);
 
-        var marker = new google.maps.Marker({
+        new google.maps.Marker({
             position: latlng,
             map: map,
             draggable: true,
@@ -91,8 +91,6 @@ $(function(){
             var zona=[];
             var tam=barrios[i][0];
             for (let index =2; index <=tam+1; index++) {
-                const lat = barrios[i][index][0];
-                const lng = barrios[i][index][1];
                 zona[index-2]={lat:barrios[i][index][0],lng:barrios[i][index][1]};
             }
             var z = new google.maps.Polygon({

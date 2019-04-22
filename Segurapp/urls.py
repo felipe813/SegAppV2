@@ -18,8 +18,6 @@ from django.contrib import admin as admin
 from django.urls import path as path
 from django.conf.urls import url as url
 
-#from mapa import views as mapa_views
-#from accounts import views as accounts_views
 from django.contrib.auth import views as auth_views
 from controller import viewsController
 
@@ -30,8 +28,6 @@ urlpatterns = [
     path('mapa/', viewsController.mapa,name = 'mapa'),
 
 	path('signup/', viewsController.signup, name='signup'),
-    #path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-	#path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
 	path('logout/', viewsController.logout, name='logout'),
 	path('login/', viewsController.login, name='login'),
 	path('', viewsController.home, name='home'),

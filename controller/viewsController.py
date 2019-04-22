@@ -4,10 +4,7 @@ from mapa import views as views_mapa
 from django.contrib.auth import views as auth_views
 
 from django.shortcuts import render
-#from django.shortcuts import render_to_response
 from django.shortcuts import redirect
-
-#from django.http import HttpResponse
 
 def index(request):
     print("index")
@@ -28,13 +25,13 @@ def mapa(request):
 def signup(request):
     print("signup")
     if request.method == 'POST':
-        ctx = views_accounts.signupWithPost(request)
+        ctx = views_accounts.signup_with_post(request)
         form = ctx['form']
         if(form.is_valid()):
             views_accounts.autenticar(request, form)
             return home(request)
     else:
-        ctx = views_accounts.signupNoPost()
+        ctx = views_accounts.signup_no_post()
     return render(request, 'signup.html', ctx)
 
 def login(request):

@@ -4,7 +4,7 @@ from mapa.models import Barrio
 from mapa.models import Denuncia
 
 class Dbcontroller():
-    def obtenerDatosBarrio(self):
+    def obtener_datos_barrio(self):
         barrios = Barrio.objects.all()
         datos = {}
         j=1
@@ -28,16 +28,16 @@ class Dbcontroller():
     #-- Posición 0: Cantidad total de barrios (n) --#
     #-- Posición 1 a n: Por cada barrio se tiene un arreglo con
     #-- el id del barrio, el nombre del barrio y la cantidad de denuncias por barrio --#
-    def obtenerDenunciasPorBarrio(self):
+    def obtener_denuncias_por_barrio(self):
         barrios = Barrio.objects.all()
         datos = {}
         i = 1
         for barrio in barrios:
-            denunciasPorBarrio = Denuncia.objects.filter(id_barrio = barrio.id_bario)
+            denuncias_por_barrio = Denuncia.objects.filter(id_barrio = barrio.id_bario)
             datos_barrio = {}
             datos_barrio[0] = barrio.id_bario
             datos_barrio[1] = barrio.nom_barrio
-            datos_barrio[2] = denunciasPorBarrio.count()
+            datos_barrio[2] = denuncias_por_barrio.count()
             datos[i] = datos_barrio
             i=i+1
         datos[0] = barrios.count()

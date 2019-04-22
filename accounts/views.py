@@ -2,12 +2,12 @@ from django.contrib.auth import login as auth_login
 
 from .forms import SignUpForm
 
-def signupWithPost(request):
+def signup_with_post(request):
     form = SignUpForm(request.POST)
     ctx = {'form': form}
     return ctx
 
-def signupNoPost():
+def signup_no_post():
     form = SignUpForm()
     ctx = {'form': form}
     return ctx

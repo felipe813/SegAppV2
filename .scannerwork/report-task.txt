@@ -1,6 +1,7 @@
-projectKey=Segurapp
-serverUrl=http://localhost:9000
-serverVersion=7.7.0.23042
-dashboardUrl=http://localhost:9000/dashboard?id=Segurapp
-ceTaskId=AWpB5fmffo5nLNnL2qmr
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWpB5fmffo5nLNnL2qmr
+organization=felipe813-github
+projectKey=felipe813_SegAppV2
+serverUrl=https://sonarcloud.io
+serverVersion=7.8.0.23906
+dashboardUrl=https://sonarcloud.io/dashboard?id=felipe813_SegAppV2
+ceTaskId=AWpCdbhnoQGPGjAgudYA
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWpCdbhnoQGPGjAgudYA

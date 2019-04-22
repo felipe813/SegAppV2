@@ -1,2 +1,2 @@
 # SegAppV2
-# Esta es una prueba
+# Versión: 2.3
