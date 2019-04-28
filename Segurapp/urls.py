@@ -21,6 +21,8 @@ from django.conf.urls import url as url
 from django.contrib.auth import views as auth_views
 from controller import viewsController
 
+viewsController = viewsController.ViewsController()
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 

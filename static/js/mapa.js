@@ -76,11 +76,12 @@ $(function(){
             google.maps.event.addListener(polygon, 'click', function (event) {
               /*alert(polygon.indexID);*/
               var tam = denuncias[0]
+              var areaPoligono = google.maps.geometry.spherical.computeArea(polygon.getPath());
               for (let i = 1; i <= tam; i++){
                 if(polygon.indexID==denuncias[i][0]){
                   //alert(denuncias[1][2]);
                   //alert("Denuncias "+denuncias[i][2]);
-                  alert("Barrio: "+denuncias[i][1]+"\nNúmero de hurtos: "+denuncias[i][2]);
+                  alert("Barrio: "+denuncias[i][1]+"\nNúmero de hurtos: "+denuncias[i][2]+"\nÁrea del polígono: "+areaPoligono);
                   break;
                 }
               }
@@ -102,8 +103,6 @@ $(function(){
                 fillOpacity: 0.35,
                 indexID: barrios[i][1]
               });
-
-
 
             z.setMap(map);
             addListenersOnPolygon(z);
