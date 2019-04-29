@@ -109,6 +109,13 @@ class Coordenadas_Poligono(models.Model):
     def _unicode_(self):
         return self.latitud + " - " +self.longitud
 
+class Delito(models.Model):
+    id_delito = models.IntegerField( primary_key=True)
+    nom_delito = models.CharField(max_length=50)
+
+    def _unicode_(self):
+        return self.nom_delito
+
 class Denuncia(models.Model):
     fecha_den = models.DateField()
     hora_den = models.TimeField()
@@ -124,4 +131,5 @@ class Denuncia(models.Model):
     id_empleado_vic = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     id_profesion = models.ForeignKey(Profesion, on_delete=models.PROTECT)
     id_escolaridad = models.ForeignKey(Escolaridad, on_delete=models.PROTECT)
-    cantdiad_vic = models.IntegerField()
+    cantidad_vic = models.IntegerField()
+    id_delito = models.ForeignKey(Delito, on_delete=models.PROTECT)
