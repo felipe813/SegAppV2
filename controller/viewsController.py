@@ -31,14 +31,15 @@ class ViewsController():
     def signup(self, request):
         print("signup")
         if request.method == 'POST':
+            print("signup 2")
             ctx = self.__views_accounts.signup_with_post(request)
             form = ctx['form']
             if(form.is_valid()):
                 self.__views_accounts.autenticar(request, form)
                 return self.home(request)
-            else:
-                ctx = self.__views_accounts.signup_no_post()
-            return render(request, 'signup.html', ctx)
+        else:
+            ctx = self.__views_accounts.signup_no_post()
+        return render(request, 'signup.html', ctx)
 
     def login(self, request):
         print("login")
