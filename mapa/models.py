@@ -116,6 +116,14 @@ class Delito(models.Model):
     def _unicode_(self):
         return self.nom_delito
 
+class Sectores_Barrio(models.Model):
+    foco = models.ForeignKey(Barrio, on_delete=models.PROTECT,related_name='foco')
+    segundo = models.ForeignKey(Barrio, on_delete=models.PROTECT,related_name='segundo')
+    distancia = models.IntegerField()
+
+    def _unicode_(self):
+        return self.foco + " - " + self.segundo
+
 class Denuncia(models.Model):
     fecha_den = models.DateField()
     hora_den = models.TimeField()

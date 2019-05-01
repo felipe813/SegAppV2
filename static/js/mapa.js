@@ -81,7 +81,7 @@ $(function(){
                 if(polygon.indexID==denuncias[i][0]){
                   //alert(denuncias[1][2]);
                   //alert("Denuncias "+denuncias[i][2]);
-                  alert("Barrio: "+denuncias[i][1]+"\nNúmero de hurtos: "+denuncias[i][2]+"\nÁrea del polígono: "+areaPoligono);
+                  alert("Barrio: "+denuncias[i][1]+"\nNúmero de hurtos: "+denuncias[i][2]+"\nÍndice del barrio: "+denuncias[i][3]);
                   break;
                 }
               }
