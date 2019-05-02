@@ -1,5 +1,46 @@
 {% extends 'base_mapa.html' %}
-{% block title %}Aplicacion en Django y GMaps{% endblock %}
+{% block title %}SegApp{% endblock %}
 {% block container %}
-    <div id="mapa" class="capas"></div>
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-md-8'>
+            <noscript>
+                <div class='alert alert-info'>
+                    <h4>Tiene deshabilitado JavaScript</h4>
+                    <p>Por favor habilite JavaScript para visualizar el mapa.</p>
+                </div>
+            </noscript>
+            <div id='mapa' class="mt-5"></div>
+        </div>
+        <div class='col-md-4'>
+            <div id="nombreBarrio" class='card card-body bg-light text-center row mt-5 m-2'>
+                NOMBRE BARRIO
+            </div>
+            <div id="indice" class='card card-body bg-light row m-2'>
+                <div class="card">
+                    <div class="card-header">
+                        Nivel de peligrosidad
+                    </div>
+                    <div class="card-body">
+                        <div class="progress">
+                            <div id="barraPeligrosidad" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100" style="width:0%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="informacionHurtos" class='card card-body bg-light row m-2'>
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Cantidad de hurtos
+                    </div>
+                    <div id="cantidadHurtos" class="card-body">
+                        -
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
