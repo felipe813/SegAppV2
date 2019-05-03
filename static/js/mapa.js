@@ -97,7 +97,7 @@ $(function () {
         var areaPoligono = google.maps.geometry.spherical.computeArea(polygon.getPath());
         for (let i = 1; i <= tam; i++) {
           if (polygon.indexID == denuncias[i][0]) {
-            llenarInformacion(denuncias[i][1], denuncias[i][2], denuncias[i][3]);
+            llenarInformacion(denuncias[i][1], denuncias[i][2], denuncias[i][4]);
             break;
           }
         }
@@ -110,7 +110,7 @@ $(function () {
       for (let index = 2; index <= tam + 1; index++) {
         zona[index - 2] = { lat: barrios[i][index][0], lng: barrios[i][index][1] };
       }
-      var color = obtenerRGB(denuncias[i][3]);
+      var color = obtenerRGB(denuncias[i][4]);
       var z = new google.maps.Polygon({
         paths: zona,
         strokeColor: color,

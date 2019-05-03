@@ -34,14 +34,27 @@ class Dbcontroller():
         denuncias_ciudad = self.obtener_denuncias_totales()#Debería filtrarse por ciudad
         datos = {}
         i = 1
+        indice_maximo = 0
+        indice_minimo = 1
         for barrio in barrios:
             datos_barrio = {}
             datos_barrio[0] = barrio.id_bario
             datos_barrio[1] = barrio.nom_barrio
             datos_barrio[2] = self.obtener_denuncias_barrio(barrio)
             datos_barrio[3] = self.obtener_indice_barrio(barrio,denuncias_ciudad)
+            if indice_maximo < datos_barrio[3]:
+                indice_maximo = datos_barrio[3]
+            if indice_minimo > datos_barrio[3]:
+                indice_minimo = datos_barrio[3]
             datos[i] = datos_barrio
             i=i+1
+        print("El indice minimo es: "+str(indice_minimo))
+        print("El indice maximo es: "+str(indice_maximo))
+        i = 1
+        if indice_maximo>indice_minimo:#Siempre debería entrar
+            for barrio in barrios:
+                datos[i][4] = (datos[i][3] - indice_minimo)/(indice_maximo - indice_minimo)
+                i=i+1
         datos[0] = barrios.count()
         return datos
 
@@ -52,7 +65,7 @@ class Dbcontroller():
         if((denuncias_sector+denuncias_barrio)==0):
             return 0
         else:
-            indice_barrio = (denuncias_barrio/(denuncias_sector+denuncias_barrio) + (denuncias_sector+denuncias_barrio)/denuncias_ciudad)/2
+            indice_barrio = 0.25*(denuncias_barrio)/(denuncias_sector+denuncias_barrio) + 0.75*(denuncias_sector+denuncias_barrio)/(denuncias_ciudad)
             return indice_barrio
 
     def obtener_denuncias_totales(self):
