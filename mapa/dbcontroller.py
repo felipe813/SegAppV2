@@ -62,11 +62,11 @@ class Dbcontroller():
         sectores_barrio = self.obtener_sectores_barrio(barrio)
         denuncias_sector = self.obtener_denuncias_sector(sectores_barrio)
         denuncias_barrio = self.obtener_denuncias_barrio(barrio)
-        if((denuncias_sector+denuncias_barrio)==0):
-            return 0
+        if(denuncias_barrio==0):
+            indice_barrio = denuncias_sector/denuncias_ciudad
         else:
             indice_barrio = 0.25*(denuncias_barrio)/(denuncias_sector+denuncias_barrio) + 0.75*(denuncias_sector+denuncias_barrio)/(denuncias_ciudad)
-            return indice_barrio
+        return indice_barrio
 
     def obtener_denuncias_totales(self):
         denuncias_totales = Denuncia.objects.all()

@@ -44,6 +44,11 @@ $(function () {
     return [Math.floor(r * 255), Math.floor(g * 255), Math.floor(b * 255)];
   }
   function obtenerRGB(indice){
+    if(indice<=0.1) indice = 0.1;
+    else if(indice<=0.35) indice = 0.35;
+    else if(indice<=0.6) indice = 0.6;
+    else if(indice<=0.85) indice = 0.85;
+    else indice = 1;
     return numberToColorHsl(1-indice, 0, 1);
   }
 // FUNCIONES PARA LLENAR INFORMACIÓN DEL BARRIO
