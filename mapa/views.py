@@ -13,6 +13,7 @@ class Views():
         if self.denuncias == None:
             print("Entra")
             self.denuncias = self.__dbcontroller.obtener_denuncias_por_barrio()
+            #print(self.denuncias)
         ctx = {"barrios": mark_safe(self.barrios), "denuncias": mark_safe(self.denuncias)}
         print("Sale")
         return ctx

@@ -41,6 +41,14 @@ class Barrio(models.Model):
     def _unicode_(self):
         return self.nom_barrio
 
+class Indice(models.Model):
+    id_barrio = models.ForeignKey(Barrio, on_delete=models.PROTECT)
+    indice_criminalidad = models.DecimalField(max_digits=5, decimal_places=4)
+    indice_color = models.DecimalField(max_digits=5, decimal_places=4)
+    anio = models.IntegerField()
+
+    def _unicode_(self):
+        return self.indice_criminalidad
 
 class Arma(models.Model):
     id_arma = models.IntegerField( primary_key=True)
@@ -65,12 +73,12 @@ class Estado_Civil(models.Model):
     def _unicode_(self):
         return self.nom_est_civ
 
-class Pais(models.Model):
-    id_pais = models.IntegerField( primary_key=True)
-    nom_pais = models.CharField(max_length=30)
+# class Pais(models.Model):
+#     id_pais = models.IntegerField( primary_key=True)
+#     nom_pais = models.CharField(max_length=30)
 
-    def _unicode_(self):
-        return self.nom_pais
+#     def _unicode_(self):
+#         return self.nom_pais
 
 class Empleado(models.Model):
     id_empleado = models.IntegerField( primary_key=True)
