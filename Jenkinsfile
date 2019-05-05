@@ -11,8 +11,8 @@ node {
 
 
         stage 'Publish results'
-            sh "docker container stop \$5 '(docker container ls -aq)''"
-            sh "docker container rm \$5 '(docker container ls -aq)''"
+            sh "docker container stop \$5 '(docker container ls -aq)'"
+            sh "docker container rm \$5 '(docker container ls -aq)'"
             sh "docker run -d --name django -p 8013:8013 django"
     }
 
