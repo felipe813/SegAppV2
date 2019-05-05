@@ -7,7 +7,6 @@ node {
             checkout scm
 
         stage 'Deploy'
-            sh "docker image rm django"
             sh "docker build --tag django ."
 	    
 
