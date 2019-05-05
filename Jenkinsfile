@@ -15,8 +15,12 @@ node {
 	    
         stage 'Publish results'
             try{
-                sh "docker container stop \$'(docker container ls -aq)'"
-                sh "docker container rm \$'(docker container ls -aq)'"
+                containerID = sh (
+                    script: "docker container ls -aq", 
+                    returnStdout: true
+                ).trim()
+                sh "docker container stop ${containerID}"
+                sh "docker container rm ${containerID}"
                 sh "docker run -d --name django -p 8013:8013 django"
             } catch (err) {  
                 sh "docker run -d --name django -p 8013:8013 django"
