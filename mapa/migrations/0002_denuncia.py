@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('id_barrio', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='mapa.Barrio')),
                 ('id_empleado_vic', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='mapa.Empleado')),
                 ('id_escolaridad', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='mapa.Escolaridad')),
-                ('id_est_civ', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='mapa.Estado_Civil')),
+                ('id_est_civ', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='mapa.EstadoCivil')),
                 ('id_mov_agr', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='agresor', to='mapa.Movil')),
                 ('id_mov_vic', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='victima', to='mapa.Movil')),
                 ('id_pais', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='mapa.Pais')),

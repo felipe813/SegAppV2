@@ -66,19 +66,15 @@ class Movil(models.Model):
     def _unicode_(self):
         return self.nom_movil
 
-class Estado_Civil(models.Model):
+class EstadoCivil(models.Model):
     id_est_civ = models.IntegerField( primary_key=True)
     nom_est_civ = models.CharField(max_length=20)
 
+    class Meta:
+        db_table = '"mapa_estado_civil"'
+
     def _unicode_(self):
-        return self.nom_est_civ
-
-# class Pais(models.Model):
-#     id_pais = models.IntegerField( primary_key=True)
-#     nom_pais = models.CharField(max_length=30)
-
-#     def _unicode_(self):
-#         return self.nom_pais
+        return self.nom_est_ci
 
 class Empleado(models.Model):
     id_empleado = models.IntegerField( primary_key=True)
@@ -108,11 +104,14 @@ class Sitio(models.Model):
     def _unicode_(self):
         return self.nom_sitio
 
-class Coordenadas_Poligono(models.Model):
+class CoordenadasPoligono(models.Model):
     id_barrio = models.ForeignKey(Barrio, on_delete=models.PROTECT)
     latitud = models.CharField(max_length=20)
     longitud = models.CharField(max_length=20)
     id_coor_poli = models.BigIntegerField(primary_key=True)
+
+    class Meta:
+        db_table = '"mapa_coordenadas_poligono"'
 
     def _unicode_(self):
         return self.latitud + " - " +self.longitud
@@ -124,10 +123,13 @@ class Delito(models.Model):
     def _unicode_(self):
         return self.nom_delito
 
-class Sectores_Barrio(models.Model):
+class SectoresBarrio(models.Model):
     foco = models.ForeignKey(Barrio, on_delete=models.PROTECT,related_name='foco')
     segundo = models.ForeignKey(Barrio, on_delete=models.PROTECT,related_name='segundo')
     distancia = models.IntegerField()
+
+    class Meta:
+        db_table = '"mapa_sectores_barrio"'
 
     def _unicode_(self):
         return self.foco + " - " + self.segundo
@@ -142,7 +144,7 @@ class Denuncia(models.Model):
     id_mov_vic = models.ForeignKey(Movil, on_delete=models.PROTECT,related_name='movil_victima')
     edad = models.IntegerField()
     sexo_vic = models.CharField(max_length=10)
-    id_est_civ = models.ForeignKey(Estado_Civil, on_delete=models.PROTECT)
+    id_est_civ = models.ForeignKey(EstadoCivil, on_delete=models.PROTECT)
     id_pais = models.ForeignKey(Pais, on_delete=models.PROTECT)
     id_empleado_vic = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     id_profesion = models.ForeignKey(Profesion, on_delete=models.PROTECT)

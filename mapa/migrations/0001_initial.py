@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Coordenadas_Poligono',
+            name='CoordenadasPoligono',
             fields=[
                 ('latitud', models.CharField(max_length=20)),
                 ('longitud', models.CharField(max_length=20)),
@@ -57,7 +57,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Estado_Civil',
+            name='EstadoCivil',
             fields=[
                 ('id_est_civ', models.IntegerField(primary_key=True, serialize=False)),
                 ('nom_est_civ', models.CharField(max_length=20)),

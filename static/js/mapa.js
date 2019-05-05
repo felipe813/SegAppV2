@@ -57,9 +57,9 @@ $(function () {
     document.getElementById('cantidadHurtos').innerHTML = numeroHurtos;
 
     element = document.getElementById("barraPeligrosidad");
-    valor = indice * 100;
+    var valor = indice * 100;
     element.style.width = valor + '%';
-    color = obtenerRGB(indice);
+    var color = obtenerRGB(indice);
     element.style.background = color;
     //alert("Barrio: " + nombreBarrio + "\nNúmero de hurtos: " + numeroHurtos + "\nÍndice del barrio: " + indice);
   }
@@ -99,7 +99,6 @@ $(function () {
     var addListenersOnPolygon = function (polygon) {
       google.maps.event.addListener(polygon, 'click', function (event) {
         var tam = denuncias[0]
-        var areaPoligono = google.maps.geometry.spherical.computeArea(polygon.getPath());
         for (let i = 1; i <= tam; i++) {
           if (polygon.indexID == denuncias[i][0]) {
             llenarInformacion(denuncias[i][1], denuncias[i][2], denuncias[i][4]);
