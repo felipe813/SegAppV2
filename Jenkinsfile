@@ -7,12 +7,15 @@ node {
             checkout scm
 
         stage 'Deploy'
+            sh "docker image rm django"
             sh "docker build --tag django ."
 	    
 
 
         stage 'Publish results'
-           sh "docker run -d --name django -p 8013:8013 django"
+            sh "docker container stop $(docker container ls -aq)"
+            sh "docker container rm $(docker container ls -aq)"
+            sh "docker run -d --name django -p 8013:8013 django"
     }
 
     catch (err) {
