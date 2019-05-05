@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
             ],
         ),
         # migrations.CreateModel(
-        #     name='Sectores_Barrio',
+        #     name='SectoresBarrio',
         #     fields=[
         #         ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
         #         ('distancia', models.IntegerField()),

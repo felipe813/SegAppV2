@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='coordenadas_poligono',
+            model_name='CoordenadasPoligono',
             name='id_coor_poli',
             field=models.BigIntegerField(primary_key=True, serialize=False),
         ),
