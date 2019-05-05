@@ -1,5 +1,5 @@
 #!groovy
-
+#!/bin/bash
 node {
 
     try {
