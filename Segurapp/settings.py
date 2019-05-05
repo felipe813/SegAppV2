@@ -139,6 +139,7 @@ STATICFILES_DIRS = [
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 NOSE_ARGS = [
+    '--cover-erase',
     '--with-coverage',
     '--cover-xml',
     '--cover-xml-file=coverage.xml',
