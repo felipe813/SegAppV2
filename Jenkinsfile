@@ -12,7 +12,7 @@ node {
 
 
         stage 'Publish results'
-           sh "docker run -d --name django -p 8080:8080 django"
+           sh "docker run -d --name django -p 80:80 django"
     }
 
     catch (err) {
