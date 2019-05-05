@@ -6,7 +6,12 @@ node {
             checkout scm
 
         stage 'Deploy'
-            sh "docker build --tag django ."
+            try{
+                sh "docker image rm django"
+                sh "docker build --tag django ."
+            } catch (err) {  
+                sh "docker build --tag django ."
+            }
 	    
         stage 'Publish results'
             try{
