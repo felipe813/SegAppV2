@@ -1,7 +1,7 @@
 from django.test import TestCase
-#import unittest
+
 from mapa.models import Pais
-# Create your tests here.
+
 class TestPais(TestCase):
     def test_constructor(self):
         pais_nuevo = Pais.objects.create(id_pais = 1, nom_pais = "Colombia")
