@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_nose',
+
     'widget_tweaks',
 
     'accounts',
@@ -131,6 +133,21 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
  os.path.join(BASE_DIR, 'static'),
+]
+
+# Django-nose Measuring coverage
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-xml',
+    '--cover-xml-file=coverage.xml',
+    '--cover-package=accounts',
+    '--cover-package=controller',
+    '--cover-package=mapa',
+    '--cover-package=Segurapp',
+    '--cover-package=static',
+    '--cover-package=templates',
 ]
 
 LOGOUT_REDIRECT_URL = 'login'
