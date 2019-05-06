@@ -1,0 +1,7 @@
+organization=felipe813-github
+projectKey=felipe813_SegAppV2
+serverUrl=https://sonarcloud.io
+serverVersion=7.8.0.24466
+dashboardUrl=https://sonarcloud.io/dashboard?id=felipe813_SegAppV2
+ceTaskId=AWqLZX9rKAidQLthTDa4
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWqLZX9rKAidQLthTDa4

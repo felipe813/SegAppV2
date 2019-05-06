@@ -11,7 +11,7 @@ class Dbcontroller(object):
 
     def __new__(cls):
         if not Dbcontroller.instance:
-            Dbcontroller.instance = Dbcontroller.__dbcontroller()
+            Dbcontroller.instance = Dbcontroller.__Dbcontroller()
         return Dbcontroller.instance
 
     def __getattr__(self, __barrios):
@@ -20,7 +20,7 @@ class Dbcontroller(object):
     def __setattr__(self, __barrios, valor):
         return setattr(self.instance, __barrios, valor)
 
-    class __dbcontroller:
+    class __Dbcontroller:
         def __init__(self):
             self.__barrios = None
 
