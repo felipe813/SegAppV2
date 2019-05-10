@@ -104,14 +104,14 @@ class TestBdController(TestCase):
         dbcontroller.get_barrios()
         dbcontroller2 = Dbcontroller()
         self.assertEqual(dbcontroller,dbcontroller2,"Hay dos ejemplares distintos de Dbcontroller")
-    def test_obtener_denuncias_por_barrio():
+    def test_obtener_denuncias_por_barrio(self):
         dbcontroller = Dbcontroller()
         t = TestModelos()
         t.test_crear_indice()
         denuncias_sin_indices = dbcontroller.obtener_denuncias_por_barrio()
         denuncias_con_indices = dbcontroller.obtener_denuncias_por_barrio()
         self.assertEqual(denuncias_sin_indices,denuncias_con_indices,"Los resultados son distintos al no haber índices")
-    def test_obtener_barrios():
+    def test_obtener_barrios(self):
         dbcontroller = Dbcontroller()
         t = TestModelos()
         barrio = t.test_crear_barrio()
