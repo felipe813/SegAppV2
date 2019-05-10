@@ -13,7 +13,7 @@ node {
                 sh "docker build --tag django ."
             }
 
-        stage 'Publish results'
+        stage 'Publish results and Test'
             try{
                 containerID = sh (
                     script: "docker container ls -aq", 
@@ -22,13 +22,11 @@ node {
                 sh "docker container stop ${containerID}"
                 sh "docker container rm ${containerID}"
                 sh "docker run -d --name django -p 8013:8013 django"
+                sh "docker exec -i django python3 manage.py test"
             } catch (err) {  
                 sh "docker run -d --name django -p 8013:8013 django"
+                sh "docker exec -i django python3 manage.py test"
             } 
-
-        
-         stage 'Test'
-            sh "docker exec -i django python3 manage.py test"
     }
 
     catch (err) {  
