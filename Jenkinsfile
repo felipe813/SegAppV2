@@ -13,6 +13,9 @@ node {
                 sh "docker build --tag django ."
             }
 	    
+        stage 'Test'
+            sh "python manage.py test"
+
         stage 'Publish results'
             try{
                 containerID = sh (
