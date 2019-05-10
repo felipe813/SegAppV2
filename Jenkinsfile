@@ -12,9 +12,6 @@ node {
             } catch (err) {  
                 sh "docker build --tag django ."
             }
-	    
-        stage 'Test'
-            sh "python3 manage.py test"
 
         stage 'Publish results'
             try{

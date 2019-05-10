@@ -25,4 +25,7 @@ RUN pip3 install -r requirements.txt
 # expose port
 EXPOSE 8000/tcp
 
+# Test
+CMD ["python3","manage.py","test"]
+
 CMD ["python3","manage.py","runserver","0.0.0.0:8013"]
