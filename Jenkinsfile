@@ -14,7 +14,7 @@ node {
             }
 	    
         stage 'Test'
-            sh "python manage.py test"
+            sh "python3 manage.py test"
 
         stage 'Publish results'
             try{
