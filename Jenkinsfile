@@ -5,6 +5,9 @@ node {
         stage 'Checkout'
             checkout scm
 
+        stage 'Test'
+             sh "python3 manage.py test"
+
         stage 'Deploy'
             try{
                 sh "docker image rm django"
@@ -22,10 +25,8 @@ node {
                 sh "docker container stop ${containerID}"
                 sh "docker container rm ${containerID}"
                 sh "docker run -d --name django -p 8013:8013 django"
-                sh "docker exec -i django python3 manage.py test"
             } catch (err) {  
                 sh "docker run -d --name django -p 8013:8013 django"
-                sh "docker exec -i django python3 manage.py test"
             } 
     }
 
