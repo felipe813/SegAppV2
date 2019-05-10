@@ -1,6 +1,5 @@
 #!groovy
 node {
-
     try {
         stage 'Checkout'
             checkout scm
@@ -8,7 +7,7 @@ node {
         stage 'Test'
              sh "python3 manage.py test"
 
-        stage 'Deploy'
+        stage 'Build Image'
             try{
                 sh "docker image rm django"
                 sh "docker build --tag django ."
@@ -16,7 +15,7 @@ node {
                 sh "docker build --tag django ."
             }
 
-        stage 'Publish results and Test'
+        stage 'Run Container'
             try{
                 containerID = sh (
                     script: "docker container ls -aq", 
@@ -29,7 +28,6 @@ node {
                 sh "docker run -d --name django -p 8013:8013 django"
             } 
     }
-
     catch (err) {  
         throw err
     }
