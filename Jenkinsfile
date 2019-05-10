@@ -26,8 +26,7 @@ node {
                 sh "docker run -d --name django -p 8013:8013 django"
             } 
 
-        stage 'Test y Run'
-            sh "Docker exec -i django python3 manage.py runserver 0.0.0.0:8013"      
+        
             
     }
 
