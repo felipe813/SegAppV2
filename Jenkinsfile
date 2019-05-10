@@ -27,7 +27,8 @@ node {
             } 
 
         
-            
+         stage 'Test'
+            sh "docker exec -i django python3 manage.py test"
     }
 
     catch (err) {  
