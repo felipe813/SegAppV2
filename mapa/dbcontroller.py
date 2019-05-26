@@ -4,6 +4,8 @@ from mapa.models import Barrio
 from mapa.models import Denuncia
 from mapa.models import SectoresBarrio
 from mapa.models import Indice
+from mapa.models import Delito
+from mapa.models import Comentario
 
 class Dbcontroller(object):
 
@@ -120,10 +122,10 @@ class Dbcontroller(object):
                 datos_barrio[3] = float(indice.indice_criminalidad)
                 datos_barrio[4] = float(indice.indice_color)
 
-                datos_barrio[5] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,1)
-                datos_barrio[6] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,2)
-                datos_barrio[7] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,3)
-                datos_barrio[8] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,5)
+                datos_barrio[5] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,Delito.objects.filter(id_delito = 1).first())
+                datos_barrio[6] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,Delito.objects.filter(id_delito = 2).first())
+                datos_barrio[7] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,Delito.objects.filter(id_delito = 3).first())
+                datos_barrio[8] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,Delito.objects.filter(id_delito = 5).first())
 
                 datos[i] = datos_barrio
                 i=i+1
@@ -169,10 +171,39 @@ class Dbcontroller(object):
         def obtener_denuncias_barrio_delito(self, anio_busqueda, barrio, delito):
             fecha_min = str(anio_busqueda)+'-01-01'
             fecha_max = str(anio_busqueda+1)+'-01-01'
-            denuncias_barrio = Denuncia.objects.filter(fecha_den__range = [fecha_min, fecha_max], id_barrio = barrio.id_bario, id_delito = delito)
+            #fecha_den__range = [fecha_min, fecha_max],
+            denuncias_barrio = Denuncia.objects.filter(id_barrio = barrio.id_bario, id_delito = delito.id_delito)
             return denuncias_barrio.count()
 
         def get_barrios(self):
             if self.__barrios == None:
                 self.__barrios = Barrio.objects.all()
             return self.__barrios
+
+        def ingresar_comentario(self, fecha_comentario, usuario, nombre_barrio, comentario):
+            try:
+                print("Barrio: "+nombre_barrio)
+                barrio = Barrio.objects.filter(nom_barrio=nombre_barrio).first()
+                print("ID Barrio: "+barrio.id_bario)
+                print("ID Usuario: "+usuario.id)
+                comentario_nuevo = Comentario(fecha_comentario = fecha_comentario, id_usuario = usuario.id, id_barrio = barrio.id_bario, comentario = comentario)
+                comentario_nuevo.save()
+                return True
+            except:
+                print("Error ingresando el usuario")
+                return False
+
+        def obtener_comentarios_barrio(self, nombre_barrio):
+            try:
+                barrio = Barrio.objects.filter(nom_barrio=nombre_barrio).first()
+                print("ID Barrio: "+barrio.id_bario)
+                comentarios = Comentario.objects.filter(id_barrio = barrio.id_bario)
+                datos = {'cantidad':comentario.count()}
+                print("Cantidad de comentarios: "+datos['cantidad'])
+                i = 0
+                for comentario in comentarios:
+                    datos[str(i)]={'Fecha':comentario.fecha_comentario, 'Usuario':comentario.id_usuario, 'Comentario':comentario.comentario}
+                    i = i+1
+                return datos
+            except:
+                return None

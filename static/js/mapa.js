@@ -11,15 +11,9 @@ function IngresarComentario() {
       url : '/mapa/',
       type : "POST",
       data : {'operacion': 'ingresarComentario',
-<<<<<<< HEAD
-      'comentario': 'Muy inseguro, roban celulares.',
-      'barrio': 'PARQUE NACIONAL',
-      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},
-=======
       'comentario': comentario,
       'barrio': nombreBarrio,
-      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},     
->>>>>>> 83d3030b1efc194a695cdd17f0b31054a75a15ef
+      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},
   }).done(function(returned_data){
       //alert(returned_data);
       document.getElementById("respuestaComentarioNuevo").innerHTML = "Comentario agregado correctamente.";
@@ -27,7 +21,7 @@ function IngresarComentario() {
       $("#modalComentarioNuevo").modal("show");
   });
   }
-  
+
 }
 
 function SeleccionarBarrio() {
@@ -36,13 +30,8 @@ function SeleccionarBarrio() {
       url : '/mapa/',
       type : "POST",
       data : {'operacion': 'obtenerComentarios',
-<<<<<<< HEAD
-      'barrio': 'PARQUE NACIONAL',
-      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},
-=======
       'barrio': nombreBarrio,
-      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},     
->>>>>>> 83d3030b1efc194a695cdd17f0b31054a75a15ef
+      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},
   }).done(function(returned_data){
       //alert(returned_data["1"]);
       //alert(returned_data["0"]);
@@ -58,7 +47,7 @@ function llenarComentarios(comentarios){
     textoHTML = '';
     for (let index = 0; index < cantidad; index++) {
       c = comentarios[index];
-      textoHTML = textoHTML + obtenerItemComentario(index,c["Comentario"],c["Fecha"],c["Usuario"]);    
+      textoHTML = textoHTML + obtenerItemComentario(index,c["Comentario"],c["Fecha"],c["Usuario"]);
       //alert(textoHTML);
     }
   }else{
@@ -143,10 +132,10 @@ $(function () {
 // FUNCIONES PARA LLENAR INFORMACIÓN DEL BARRIO
   function llenarInformacion(nombreBarrio, numeroDelitos, indice, denuncias_delitos) {
     document.getElementById('nombreBarrio').innerHTML = nombreBarrio;
-    document.getElementById('cantidadHurtos').innerHTML = denuncias_delitos[cantidadHurtos];
-    document.getElementById('cantidadDelitosSexuales').innerHTML = denuncias_delitos[cantidadDelitosSexuales];
-    document.getElementById('cantidadHurtoAutomotores').innerHTML = denuncias_delitos[cantidadHurtoAutomotores];
-    document.getElementById('cantidadHomicidios').innerHTML = denuncias_delitos[cantidadHomicidios];
+    document.getElementById('cantidadHurtos').innerHTML = denuncias_delitos["cantidadHurtos"];
+    document.getElementById('cantidadDelitosSexuales').innerHTML = denuncias_delitos["cantidadDelitosSexuales"];
+    document.getElementById('cantidadHurtoAutomotores').innerHTML = denuncias_delitos["cantidadHurtoAutomotores"];
+    document.getElementById('cantidadHomicidios').innerHTML = denuncias_delitos["cantidadHomicidios"];
 
     element = document.getElementById("barraPeligrosidad");
     var valor = indice * 100;

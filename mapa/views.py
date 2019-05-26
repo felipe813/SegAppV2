@@ -1,6 +1,7 @@
 from django.utils.safestring import mark_safe
 from mapa.dbcontroller import Dbcontroller
 import json
+import datetime
 from django.http import HttpResponse
 
 
@@ -18,15 +19,22 @@ class Views():
             if operacion == 'ingresarComentario':
                 comentario =request.POST.get('comentario')
                 barrio = request.POST.get('barrio')
+                usuario = request.user
+                fecha_comentario = datetime.datetime.now()
                 print("Se guardara el comentario "+ comentario+ " del barrio "+ barrio)
                 # AQUI SE DEBE GUARDAR EL COMENTARIO EN LA BASE DE DATOS
-                ctx = {"Tipo": operacion,"Datos": "Se ingreso correctamente"}
+                resultado = self.__dbcontroller.ingresar_comentario(fecha_comentario, usuario, barrio, comentario)
+                salida = "Error al ingresar el comentario"
+                if(resultado):
+                    salida = "Comentario ingresado correctamente"
+                ctx = {"Tipo": operacion,"Datos": resultado}
                 return ctx
             if operacion == 'obtenerComentarios':
                 barrio = request.POST.get('barrio')
                 print("Se obtendran los comentarios del barrio "+ barrio)
                 # AQUI SE DEBE CONSULTAR LA LISTA DE COMENTARIOS Y GUARDARLOS EN UNA LISTA
-                comentarios = {'cantidad':2,'0':{'Fecha':"13 de abril2",'Usuario':"asanchez2",'Comentario':"Roban celulares y atracan personas en la calle2"},'1':{'Fecha':"13 de abril",'Usuario':"asanchez",'Comentario':"Roban celulares y atracan personas en la calle"}}
+                comentarios = self.__dbcontroller.obtener_comentarios_barrio(barrio)
+                ##comentarios = {'cantidad':2,'0':{'Fecha':"13 de abril2",'Usuario':"asanchez2",'Comentario':"Roban celulares y atracan personas en la calle2"},'1':{'Fecha':"13 de abril",'Usuario':"asanchez",'Comentario':"Roban celulares y atracan personas en la calle"}}
                 ctx = {"Tipo": operacion,"Datos": comentarios}
                 return ctx
         if self.barrios == None:

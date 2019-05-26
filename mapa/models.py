@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Pais(models.Model):
@@ -151,3 +152,9 @@ class Denuncia(models.Model):
     id_escolaridad = models.ForeignKey(Escolaridad, on_delete=models.PROTECT)
     cantidad_vic = models.IntegerField()
     id_delito = models.ForeignKey(Delito, on_delete=models.PROTECT)
+
+class Comentario(models.Model):
+    fecha_comentario = models.DateTimeField()
+    id_usuario = models.ForeignKey(User, on_delete=models.PROTECT)
+    comentario = models.CharField(max_length=255)
+    id_barrio = models.ForeignKey(Barrio, on_delete=models.PROTECT)
