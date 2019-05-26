@@ -1,3 +1,22 @@
+
+function AjaxFormSubmit() {
+  alert('1');
+  
+  //var token = '{{csrf_token}}';
+  $.ajax({
+      url : '/mapa/',
+      type : "POST",
+      data : {'content': 'xxx',
+      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),}
+  }).done(function(returned_data){
+      alert('2');
+      // This is the ajax.done() method, where you can fire events after the ajax method is complete 
+
+      // For instance, you could hide/display your add/remove button here
+
+  });
+}
+
 $(function () {
 // FUNCIONES PARA CALCULAR COLOR
   function numberToColorHsl(i, min, max) {
