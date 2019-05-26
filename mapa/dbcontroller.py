@@ -185,8 +185,7 @@ class Dbcontroller(object):
                 print("Barrio: "+nombre_barrio)
                 barrio = Barrio.objects.filter(nom_barrio=nombre_barrio).first()
                 print("ID Barrio: "+barrio.id_bario)
-                print("ID Usuario: "+usuario.id)
-                comentario_nuevo = Comentario(fecha_comentario = fecha_comentario, id_usuario = usuario.id, id_barrio = barrio.id_bario, comentario = comentario)
+                comentario_nuevo = Comentario(fecha_comentario = fecha_comentario, id_user = usuario, id_barrio = barrio, comentario = comentario)
                 comentario_nuevo.save()
                 return True
             except:
@@ -198,11 +197,11 @@ class Dbcontroller(object):
                 barrio = Barrio.objects.filter(nom_barrio=nombre_barrio).first()
                 print("ID Barrio: "+barrio.id_bario)
                 comentarios = Comentario.objects.filter(id_barrio = barrio.id_bario)
-                datos = {'cantidad':comentario.count()}
-                print("Cantidad de comentarios: "+datos['cantidad'])
+                datos = {'cantidad':comentarios.count()}
+                print("Cantidad de comentarios: "+str(datos['cantidad']))
                 i = 0
                 for comentario in comentarios:
-                    datos[str(i)]={'Fecha':comentario.fecha_comentario, 'Usuario':comentario.id_usuario, 'Comentario':comentario.comentario}
+                    datos[str(i)]={'Fecha':str(comentario.fecha_comentario), 'Usuario':str(comentario.id_user), 'Comentario':str(comentario.comentario)}
                     i = i+1
                 return datos
             except:
