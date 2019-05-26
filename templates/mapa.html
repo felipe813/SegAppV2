@@ -23,8 +23,8 @@
                     </div>
                     <div class="card-body">
                         <div class="progress">
-                            <div id="barraPeligrosidad" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                                aria-valuemax="100" style="width:0%">
+                            <div id="barraPeligrosidad" class="progress-bar" role="progressbar" aria-valuenow="0"
+                                aria-valuemin="0" aria-valuemax="100" style="width:0%">
                             </div>
                         </div>
                     </div>
@@ -33,141 +33,154 @@
             <div id="informaionDelitos" class='card card-body bg-light row m-2'>
                 <div class="container-fluid">
                     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-                      <div class="carousel-inner row w-100 mx-auto">
-                        <div class="carousel-item col-md-12 active">
-                          <div class="card">
-                            <div class="card-header bg-primary text-white">
-                                Cantidad de hurtos
+                        <div class="carousel-inner row w-100 mx-auto">
+                            <div class="carousel-item col-md-12 active">
+                                <div class="card">
+                                    <div class="card-header bg-primary text-white">
+                                        Cantidad de hurtos
+                                    </div>
+                                    <div id="cantidadHurtos" class="card-body">
+                                        -
+                                    </div>
+                                </div>
                             </div>
-                            <div id="cantidadHurtos" class="card-body">
-                                -
+                            <div class="carousel-item col-md-12">
+                                <div class="card">
+                                    <div class="card-header bg-secondary text-white">
+                                        Cantidad de homicidios
+                                    </div>
+                                    <div id="cantidadHomicidios" class="card-body">
+                                        -
+                                    </div>
+                                </div>
                             </div>
-                          </div>
+                            <div class="carousel-item col-md-12">
+                                <div class="card">
+                                    <div class="card-header bg-info text-white">
+                                        Cantidad de delitos sexuales
+                                    </div>
+                                    <div id="cantidadDelitosSexuales" class="card-body">
+                                        -
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item col-md-12">
+                                <div class="card">
+                                    <div class="card-header bg-warning text-white">
+                                        Cantidad de hurto de automotores
+                                    </div>
+                                    <div id="cantidadHurtoAutomotores" class="card-body">
+                                        -
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="carousel-item col-md-12">
-                          <div class="card">
-                            <div class="card-header bg-secondary text-white">
-                                Cantidad de homicidios
-                            </div>
-                            <div id="cantidadHomicidios" class="card-body">
-                                -
-                            </div>
-                          </div>
-                        </div>
-                        <div class="carousel-item col-md-12">
-                          <div class="card">
-                            <div class="card-header bg-info text-white">
-                                Cantidad de delitos sexuales
-                            </div>
-                            <div id="cantidadDelitosSexuales" class="card-body">
-                                -
-                            </div>
-                          </div>
-                        </div>
-                        <div class="carousel-item col-md-12">
-                          <div class="card">
-                            <div class="card-header bg-warning text-white">
-                                Cantidad de hurto de automotores
-                            </div>
-                            <div id="cantidadHurtoAutomotores" class="card-body">
-                                -
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
 
 
-                      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev" style="filter: invert(30%);margin-left: -10%;">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                      </a>
-                      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next"  style="filter: invert(30%);margin-right: -10%;">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                      </a>
+                        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev"
+                            style="filter: invert(30%);margin-left: -10%;">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next"
+                            style="filter: invert(30%);margin-right: -10%;">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
 
                     </div>
-                  </div>
+                </div>
             </div>
             <div id="nuevoComentario" class='card card-body bg-light row m-2'>
 
-                    <div style="display: flex;justify-content: center; align-items : center">Danos tu opinion de esta zona :
-                    </div>
-                    <div class="card-body ">
-                        <div class="box h-100 d-flex justify-content-center flex-column">
-                            <textarea id="textoComentario" rows="3"></textarea>
-                        </div>
-                        <br>
-                        <div class="col text-center">
-                            {% csrf_token %}
-                            <a onclick="IngresarComentario()" href="#" class="btn btn-outline-info "> Comentar </a>
-                        </div>
-                    </div>
+                <div style="display: flex;justify-content: center; align-items : center">Danos tu opinion de esta zona :
                 </div>
-        </div>
-        <div class="modal fade" id="modalComentarioNuevo">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                  
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                      <h4 class="modal-title">Comentario</h4>
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="card-body ">
+                    <div class="box h-100 d-flex justify-content-center flex-column">
+                        <textarea id="textoComentario" rows="3"></textarea>
                     </div>
-                    
-                    <!-- Modal body -->
-                    <div class="modal-body" id="respuestaComentarioNuevo">
-                      Se ingresó correctamente el comentario
-                    </div>
-                    
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-              <div class='col-md-12'>
-                    <div id="Comentarios" class='card card-body bg-light row m-2'>
-                        <div class="container-fluid">
-                            <div id="carouselComentarios" class="carousel slide" data-ride="carousel" data-interval="false">
-                                <div id="listaComentarios" class="carousel-inner row w-100 mx-auto">
-                                    <div class="carousel-item col-md-12 active">
-                                        <div class="card">
-                                            <div class="card-header bg-dark text-white">
-                                                Comentarios
-                                            </div>
-                                            <div id="textoComentario" class="card-body">
-                                                -
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item col-md-12">
-                                        <div class="card">
-                                            <div class="card-header bg-dark text-white">
-                                                Comentarios
-                                            </div>
-                                            <div id="textoComentario" class="card-body">
-                                                -
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselComentarios" role="button" data-slide="prev"
-                                    style="filter: invert(30%);margin-left: -8%;">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselComentarios" role="button" data-slide="next"
-                                    style="filter: invert(30%);margin-right: -8%;">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        </div>
+                    <br>
+                    <div class="col text-center">
+                        {% csrf_token %}
+                        <a onclick="IngresarComentario()" href="#" class="btn btn-outline-info "> Comentar </a>
                     </div>
                 </div>
             </div>
-            {% endblock %}
+            <div id="Filtro" class='card card-body bg-dark row m-2'>
+                <div class="card-body ">
+                    <div class="col text-center">
+                    <input id="ex2" type="text" class="span2" value="" data-slider-min="0" data-slider-max="1"
+                    data-slider-step="0.1" data-slider-value="[0,1]" />
+                </div>
+                <div class="col text-center">
+                <button id="filtroIndice" class='btn btn-danger'>Filtar</button>
+            </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalComentarioNuevo">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Comentario</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body" id="respuestaComentarioNuevo">
+                        Se ingresó correctamente el comentario
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class='col-md-12'>
+            <div id="Comentarios" class='card card-body bg-light row m-2'>
+                <div class="container-fluid">
+                    <div id="carouselComentarios" class="carousel slide" data-ride="carousel" data-interval="false">
+                        <div id="listaComentarios" class="carousel-inner row w-100 mx-auto">
+                            <div class="carousel-item col-md-12 active">
+                                <div class="card">
+                                    <div class="card-header bg-dark text-white">
+                                        Comentarios
+                                    </div>
+                                    <div id="textoComentario" class="card-body">
+                                        -
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item col-md-12">
+                                <div class="card">
+                                    <div class="card-header bg-dark text-white">
+                                        Comentarios
+                                    </div>
+                                    <div id="textoComentario" class="card-body">
+                                        -
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselComentarios" role="button" data-slide="prev"
+                            style="filter: invert(30%);margin-left: -8%;">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselComentarios" role="button" data-slide="next"
+                            style="filter: invert(30%);margin-right: -8%;">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

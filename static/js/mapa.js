@@ -1,8 +1,29 @@
+var maximoIndice = 1;
+var minimoIndice = 0;
+var slider = new Slider("#ex2");
+slider.on("slide", function(sliderValue) {
+  valores = String(sliderValue).split(",");
+  max = valores[0];
+  min = valores[1];
+  if(max<min){
+    temp=max;
+    max=min;
+    min=temp;
+  }
+  if(max!=maximoIndice || min != minimoIndice){
+    maximoIndice=max;
+    minimoIndice= min;
+  }
+	
+});
+
+
 
 function IngresarComentario() {
   jQuery.noConflict();
   var nombreBarrio= $('#nombreBarrio').text().trim();
   var comentario= $('#textoComentario').val();
+  var usuario = $('#userMenu').text().trim();
   if(nombreBarrio == 'NOMBRE BARRIO'){
     document.getElementById("respuestaComentarioNuevo").innerHTML = "Seleccione un barrio para comentar.";
     $("#modalComentarioNuevo").modal("show");
@@ -13,6 +34,7 @@ function IngresarComentario() {
       data : {'operacion': 'ingresarComentario',
       'comentario': comentario,
       'barrio': nombreBarrio,
+      'usuario': usuario,
       csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},
   }).done(function(returned_data){
       //alert(returned_data);
@@ -145,11 +167,21 @@ $(function () {
     //alert("Barrio: " + nombreBarrio + "\nNúmero de hurtos: " + numeroHurtos + "\nÍndice del barrio: " + indice);
   }
 
+  $('#filtroIndice').click(
+    function(){
+      iniciarMapa();
+    }
+  );
+
 // FUNCIONES DEL MAPA
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(getCoords, getError);
-  } else {
-    initializeDefault();
+  iniciarMapa();
+
+  function iniciarMapa(){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getCoords, getError);
+    } else {
+      initializeDefault();
+    }
   }
   function getCoords(position) {
     var lat = position.coords.latitude;
@@ -192,24 +224,26 @@ $(function () {
     }
     var cantidadBarrios = barrios[0];
     for (let i = 1; i <= cantidadBarrios; i++) {
-      var zona = [];
-      var tam = barrios[i][0];
-      for (let index = 2; index <= tam + 1; index++) {
-        zona[index - 2] = { lat: barrios[i][index][0], lng: barrios[i][index][1] };
-      }
-      var color = obtenerRGB(denuncias[i][4]);
-      var z = new google.maps.Polygon({
-        paths: zona,
-        strokeColor: color,
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: color,
-        fillOpacity: 0.35,
-        indexID: barrios[i][1]
-      });
+      if(denuncias[i][4]<=maximoIndice && denuncias[i][4]>=minimoIndice ){
+        var zona = [];
+        var tam = barrios[i][0];
+        for (let index = 2; index <= tam + 1; index++) {
+          zona[index - 2] = { lat: barrios[i][index][0], lng: barrios[i][index][1] };
+        }
+        var color = obtenerRGB(denuncias[i][4]);
+        var z = new google.maps.Polygon({
+          paths: zona,
+          strokeColor: color,
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: color,
+          fillOpacity: 0.35,
+          indexID: barrios[i][1]
+        });
 
-      z.setMap(map);
-      addListenersOnPolygon(z);
+        z.setMap(map);
+        addListenersOnPolygon(z);
+      }
     }
   }
 });
