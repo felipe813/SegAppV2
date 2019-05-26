@@ -6,7 +6,7 @@ function IngresarComentario() {
       data : {'operacion': 'ingresarComentario',
       'comentario': 'Muy inseguro, roban celulares.',
       'barrio': 'PARQUE NACIONAL',
-      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},     
+      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},
   }).done(function(returned_data){
       //alert(returned_data);
   });
@@ -18,7 +18,7 @@ function SeleccionarBarrio() {
       type : "POST",
       data : {'operacion': 'obtenerComentarios',
       'barrio': 'PARQUE NACIONAL',
-      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},     
+      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},
   }).done(function(returned_data){
       alert(returned_data["1"]);
       alert(returned_data["0"]);
@@ -80,9 +80,12 @@ $(function () {
     return numberToColorHsl(1-indice, 0, 1);
   }
 // FUNCIONES PARA LLENAR INFORMACIÓN DEL BARRIO
-  function llenarInformacion(nombreBarrio, numeroHurtos, indice) {
+  function llenarInformacion(nombreBarrio, numeroDelitos, indice, denuncias_delitos) {
     document.getElementById('nombreBarrio').innerHTML = nombreBarrio;
-    document.getElementById('cantidadHurtos').innerHTML = numeroHurtos;
+    document.getElementById('cantidadHurtos').innerHTML = denuncias_delitos[cantidadHurtos];
+    document.getElementById('cantidadDelitosSexuales').innerHTML = denuncias_delitos[cantidadDelitosSexuales];
+    document.getElementById('cantidadHurtoAutomotores').innerHTML = denuncias_delitos[cantidadHurtoAutomotores];
+    document.getElementById('cantidadHomicidios').innerHTML = denuncias_delitos[cantidadHomicidios];
 
     element = document.getElementById("barraPeligrosidad");
     var valor = indice * 100;
@@ -129,7 +132,8 @@ $(function () {
         var tam = denuncias[0]
         for (let i = 1; i <= tam; i++) {
           if (polygon.indexID == denuncias[i][0]) {
-            llenarInformacion(denuncias[i][1], denuncias[i][2], denuncias[i][4]);
+            var denuncias_delitos = {cantidadDelitosSexuales : denuncias[i][5], cantidadHomicidios : denuncias[i][6], cantidadHurtos : denuncias[i][7], cantidadHurtoAutomotores : denuncias[i][8]}
+            llenarInformacion(denuncias[i][1], denuncias[i][2], denuncias[i][4], denuncias_delitos);
             SeleccionarBarrio();
             break;
           }

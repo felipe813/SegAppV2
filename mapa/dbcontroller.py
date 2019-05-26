@@ -49,7 +49,7 @@ class Dbcontroller(object):
         #-- Posición 1 a n: Por cada barrio se tiene un arreglo con
         #-- el id del barrio, el nombre del barrio y la cantidad de denuncias por barrio --#
         def obtener_denuncias_por_barrio(self):
-            anio_busqueda = 2017
+            anio_busqueda = 2018
             denuncias_ciudad = self.obtener_denuncias_totales()#Debería filtrarse por ciudad
             datos = {}
             existe_indices = self.existe_indices_anio(anio_busqueda)
@@ -75,6 +75,12 @@ class Dbcontroller(object):
                 datos_barrio[1] = barrio.nom_barrio
                 datos_barrio[2] = self.obtener_denuncias_barrio(barrio)
                 datos_barrio[3] = self.obtener_indice_barrio(barrio, denuncias_ciudad)
+
+                datos_barrio[5] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,1)
+                datos_barrio[6] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,2)
+                datos_barrio[7] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,3)
+                datos_barrio[8] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,5)
+
                 if indice_maximo < datos_barrio[3]:
                     indice_maximo = datos_barrio[3]
                 if indice_minimo > datos_barrio[3]:
@@ -113,6 +119,12 @@ class Dbcontroller(object):
                 indice = Indice.objects.filter(anio=anio_busqueda,id_barrio = barrio.id_bario).first()
                 datos_barrio[3] = float(indice.indice_criminalidad)
                 datos_barrio[4] = float(indice.indice_color)
+
+                datos_barrio[5] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,1)
+                datos_barrio[6] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,2)
+                datos_barrio[7] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,3)
+                datos_barrio[8] = self.obtener_denuncias_barrio_delito(anio_busqueda,barrio,5)
+
                 datos[i] = datos_barrio
                 i=i+1
             return datos
@@ -152,6 +164,12 @@ class Dbcontroller(object):
 
         def obtener_denuncias_barrio(self, barrio):
             denuncias_barrio = Denuncia.objects.filter(id_barrio = barrio.id_bario)
+            return denuncias_barrio.count()
+
+        def obtener_denuncias_barrio_delito(self, anio_busqueda, barrio, delito):
+            fecha_min = str(anio_busqueda)+'-01-01'
+            fecha_max = str(anio_busqueda+1)+'-01-01'
+            denuncias_barrio = Denuncia.objects.filter(fecha_den__range = [fecha_min, fecha_max], id_barrio = barrio.id_bario, id_delito = delito)
             return denuncias_barrio.count()
 
         def get_barrios(self):
