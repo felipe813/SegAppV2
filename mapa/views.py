@@ -2,6 +2,8 @@ from django.utils.safestring import mark_safe
 from mapa.dbcontroller import Dbcontroller
 import json
 import datetime
+from django.utils.timezone import utc
+
 from django.http import HttpResponse
 
 
@@ -20,7 +22,8 @@ class Views():
                 comentario =request.POST.get('comentario')
                 barrio = request.POST.get('barrio')
                 usuario = request.user
-                fecha_comentario = datetime.datetime.now()
+                fecha_comentario = datetime.datetime.utcnow().replace(tzinfo=utc)
+                #fecha_comentario = datetime.strptime(fecha_comentario, "%a, %d %b %Y %H:%M:%S %z")
                 print("Se guardara el comentario "+ comentario+ " del barrio "+ barrio)
                 # AQUI SE DEBE GUARDAR EL COMENTARIO EN LA BASE DE DATOS
                 resultado = self.__dbcontroller.ingresar_comentario(fecha_comentario, usuario, barrio, comentario)

@@ -154,7 +154,8 @@ class Denuncia(models.Model):
     id_delito = models.ForeignKey(Delito, on_delete=models.PROTECT)
 
 class Comentario(models.Model):
+    id_comentario = models.IntegerField( primary_key=True)
     fecha_comentario = models.DateTimeField()
-    id_usuario = models.ForeignKey(User, on_delete=models.PROTECT)
+    id_user = models.ForeignKey(User, on_delete=models.PROTECT)
     comentario = models.CharField(max_length=255)
     id_barrio = models.ForeignKey(Barrio, on_delete=models.PROTECT)
