@@ -41,6 +41,7 @@ function IngresarComentario() {
       document.getElementById("respuestaComentarioNuevo").innerHTML = "Comentario agregado correctamente.";
       document.getElementById("textoComentario").value="";
       $("#modalComentarioNuevo").modal("show");
+      SeleccionarBarrio();
   });
   }
 
