@@ -1,29 +1,90 @@
 
 function IngresarComentario() {
-  $.ajax({
+  jQuery.noConflict();
+  var nombreBarrio= $('#nombreBarrio').text().trim();
+  var comentario= $('#textoComentario').val();
+  if(nombreBarrio == 'NOMBRE BARRIO'){
+    document.getElementById("respuestaComentarioNuevo").innerHTML = "Seleccione un barrio para comentar.";
+    $("#modalComentarioNuevo").modal("show");
+  }else{
+    $.ajax({
       url : '/mapa/',
       type : "POST",
       data : {'operacion': 'ingresarComentario',
+<<<<<<< HEAD
       'comentario': 'Muy inseguro, roban celulares.',
       'barrio': 'PARQUE NACIONAL',
       csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},
+=======
+      'comentario': comentario,
+      'barrio': nombreBarrio,
+      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},     
+>>>>>>> 83d3030b1efc194a695cdd17f0b31054a75a15ef
   }).done(function(returned_data){
       //alert(returned_data);
+      document.getElementById("respuestaComentarioNuevo").innerHTML = "Comentario agregado correctamente.";
+      document.getElementById("textoComentario").value="";
+      $("#modalComentarioNuevo").modal("show");
   });
+  }
+  
 }
 
 function SeleccionarBarrio() {
+  var nombreBarrio= $('#nombreBarrio').text();
   $.ajax({
       url : '/mapa/',
       type : "POST",
       data : {'operacion': 'obtenerComentarios',
+<<<<<<< HEAD
       'barrio': 'PARQUE NACIONAL',
       csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},
+=======
+      'barrio': nombreBarrio,
+      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},     
+>>>>>>> 83d3030b1efc194a695cdd17f0b31054a75a15ef
   }).done(function(returned_data){
-      alert(returned_data["1"]);
-      alert(returned_data["0"]);
-      alert(returned_data["2"]["Fecha"]);
+      //alert(returned_data["1"]);
+      //alert(returned_data["0"]);
+      //alert(returned_data["2"]["Fecha"]);
+      llenarComentarios(returned_data);
   });
+}
+
+function llenarComentarios(comentarios){
+  cantidad = comentarios["cantidad"];
+  //alert(cantidad);
+  if(cantidad>0){
+    textoHTML = '';
+    for (let index = 0; index < cantidad; index++) {
+      c = comentarios[index];
+      textoHTML = textoHTML + obtenerItemComentario(index,c["Comentario"],c["Fecha"],c["Usuario"]);    
+      //alert(textoHTML);
+    }
+  }else{
+    textoHTML = 'No hay comentarios para este sector.'
+  }
+  document.getElementById("listaComentarios").innerHTML = textoHTML;
+}
+
+function obtenerItemComentario(indexComentario,comentario,fecha,autor){
+  if(indexComentario==0){
+    cabezera = '<div class="carousel-item col-md-12 active">';
+  }else{
+    cabezera = '<div class="carousel-item col-md-12">';
+  }
+  retorno =
+  cabezera
+  +'<div class="card">'
+  +'<div class="card-header bg-dark text-white">'
+  +fecha +' , '+ autor+ ' dice :  '
+  +'</div>'
+  +'<div id="textoComentario" class="card-body">'
+  +comentario
+  +'</div>'
+  +'</div>'
+  +'</div>';
+  return retorno;
 }
 
 $(function () {
