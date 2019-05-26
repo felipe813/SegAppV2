@@ -1,19 +1,28 @@
 
-function AjaxFormSubmit() {
-  alert('1');
-  
-  //var token = '{{csrf_token}}';
+function IngresarComentario() {
   $.ajax({
       url : '/mapa/',
       type : "POST",
-      data : {'content': 'xxx',
-      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),}
+      data : {'operacion': 'ingresarComentario',
+      'comentario': 'Muy inseguro, roban celulares.',
+      'barrio': 'PARQUE NACIONAL',
+      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},     
   }).done(function(returned_data){
-      alert('2');
-      // This is the ajax.done() method, where you can fire events after the ajax method is complete 
+      //alert(returned_data);
+  });
+}
 
-      // For instance, you could hide/display your add/remove button here
-
+function SeleccionarBarrio() {
+  $.ajax({
+      url : '/mapa/',
+      type : "POST",
+      data : {'operacion': 'obtenerComentarios',
+      'barrio': 'PARQUE NACIONAL',
+      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},     
+  }).done(function(returned_data){
+      alert(returned_data["1"]);
+      alert(returned_data["0"]);
+      alert(returned_data["2"]["Fecha"]);
   });
 }
 
@@ -121,6 +130,7 @@ $(function () {
         for (let i = 1; i <= tam; i++) {
           if (polygon.indexID == denuncias[i][0]) {
             llenarInformacion(denuncias[i][1], denuncias[i][2], denuncias[i][4]);
+            SeleccionarBarrio();
             break;
           }
         }

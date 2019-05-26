@@ -6,6 +6,9 @@ from django.contrib.auth import views as auth_views
 from django.shortcuts import render
 from django.shortcuts import redirect
 
+from django.http import HttpResponse
+import simplejson as json
+
 class ViewsController():
 
     def __init__(self):
@@ -24,7 +27,15 @@ class ViewsController():
         print("mapa")
         if(request.user.is_authenticated):
             ctx = self.__views_mapa.mapa(request)
-            return render(request,'mapa.html',ctx)
+            operacion = ctx['Tipo']
+            if operacion == "ingresarComentario":
+                return HttpResponse(ctx['Datos'])
+            elif operacion == "obtenerComentarios":
+                print(ctx['Datos'])
+                return HttpResponse(json.dumps(ctx['Datos']), content_type='application/json')
+            else:
+                return render(request,'mapa.html',ctx['Datos'])
+                
         else:
             return redirect('login')
 
