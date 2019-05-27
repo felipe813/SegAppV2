@@ -173,7 +173,7 @@ class Dbcontroller(object):
         def obtener_denuncias_barrio(self, barrio):
             rango_fechas = self.__obtener_rango_fechas(self.__anio_busqueda)
             denuncias_barrio = Denuncia.objects.filter(id_barrio = barrio.id_bario, fecha_den__range = rango_fechas)
-            print("Para el barrio "+barrio.nom_barrio+" se tienen "+ str(denuncias_barrio.count()) +" denuncias\n")
+            #print("Para el barrio "+barrio.nom_barrio+" se tienen "+ str(denuncias_barrio.count()) +" denuncias\n")
             return denuncias_barrio.count()
 
         def obtener_denuncias_barrio_delito(self, barrio, delito):

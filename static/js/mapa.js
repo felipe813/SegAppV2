@@ -51,6 +51,23 @@ function IngresarComentario() {
 
 }
 
+function CambiarAnio() {
+  var anio= $('#anio').text().trim();
+  //var anio = 2018;
+  alert(anio);
+  $.ajax({
+      url : '/mapa/',
+      type : 'GET',
+      data : {
+      'anio': anio,
+      csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},
+      success: function(data){
+        alert("(Y)");
+      }
+  }
+  );
+}
+
 function SeleccionarBarrio() {
   var nombreBarrio= $('#nombreBarrio').text();
   $.ajax({
@@ -175,6 +192,7 @@ $(function () {
   $('#filtroIndice').click(
     function(){
       iniciarMapa();
+      CambiarAnio();
     }
   );
 

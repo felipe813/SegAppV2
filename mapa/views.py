@@ -10,12 +10,13 @@ from django.http import HttpResponse
 
 class Views():
     barrios = None
-    denuncias = None
+    denuncias = {'2016':None,'2017':None,'2018':None,'2019':None}
     def __init__(self):
         self.__dbcontroller = Dbcontroller()
 
 
     def mapa(self, request):
+        print('Entro a mapa' + request.method)
         if request.method == 'POST':
             operacion=request.POST.get('operacion')
             if operacion == 'ingresarComentario':
@@ -42,10 +43,15 @@ class Views():
                 return ctx
         if self.barrios == None:
             self.barrios = self.__dbcontroller.obtener_datos_barrio()
-        if self.denuncias == None:
-            print("Entra")
-            self.denuncias = self.__dbcontroller.obtener_denuncias_por_barrio(2018)
-        print(self.denuncias)
-        ctx = {"Tipo":"CargueInicial","Datos":{"barrios": mark_safe(self.barrios), "denuncias": mark_safe(self.denuncias)}}
+        anio =request.GET.get('anio')
+        
+        if anio==None:
+            anio='2018'
+        print('El año de busqueda es '+str(anio))
+        if self.denuncias[anio] == None:
+            print("Entra a buscar")
+            self.denuncias[anio] = self.__dbcontroller.obtener_denuncias_por_barrio(anio)
+        print(self.denuncias[anio])
+        ctx = {"Tipo":"CargueInicial","Datos":{"barrios": mark_safe(self.barrios), "denuncias": mark_safe(self.denuncias[anio])}}
         print("Sale")
         return ctx
