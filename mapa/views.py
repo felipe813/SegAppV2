@@ -44,8 +44,7 @@ class Views():
             self.barrios = self.__dbcontroller.obtener_datos_barrio()
         if self.denuncias == None:
             print("Entra")
-            self.denuncias = self.__dbcontroller.obtener_denuncias_por_barrio()
-            #print(self.denuncias)
+            self.denuncias = self.__dbcontroller.obtener_denuncias_por_barrio(2018)
         print(self.denuncias)
         ctx = {"Tipo":"CargueInicial","Datos":{"barrios": mark_safe(self.barrios), "denuncias": mark_safe(self.denuncias)}}
         print("Sale")
