@@ -107,15 +107,28 @@
                     </div>
                 </div>
             </div>
+            
+        </div>
+        <div class='col-md-4'>
             <div id="Filtro" class='card card-body bg-dark row m-2'>
                 <div class="card-body ">
+                    <div class="col text-center d-inline">
+                        <input id="ex2" type="text" class="span2" value="" data-slider-min="0" data-slider-max="1"
+                            data-slider-step="0.1" data-slider-value="[0,1]" />
+                            <div class="btn-group " style="margin-left: 5%;">
+                                <a class="btn btn-primary dropdown-toggle btn-xs" data-toggle="dropdown" href="#"> 2019 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                  <li class="dropdown-item">2016</li>
+                                  <li class="dropdown-item">2017</li>
+                                  <li class="dropdown-item">2018</li>
+                                  <li class="dropdown-item">2019</li>
+                                </ul>
+                              </div>
+                    </div>
+                    <br>
                     <div class="col text-center">
-                    <input id="ex2" type="text" class="span2" value="" data-slider-min="0" data-slider-max="1"
-                    data-slider-step="0.1" data-slider-value="[0,1]" />
+                    <button id="filtroIndice" class='btn btn-danger btn-xs'>Filtar</button>
                 </div>
-                <div class="col text-center">
-                <button id="filtroIndice" class='btn btn-danger'>Filtar</button>
-            </div>
                 </div>
             </div>
         </div>
@@ -142,7 +155,7 @@
                 </div>
             </div>
         </div>
-        <div class='col-md-12'>
+        <div class='col-md-8'>
             <div id="Comentarios" class='card card-body bg-light row m-2'>
                 <div class="container-fluid">
                     <div id="carouselComentarios" class="carousel slide" data-ride="carousel" data-interval="false">
