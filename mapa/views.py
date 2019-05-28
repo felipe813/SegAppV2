@@ -46,7 +46,7 @@ class Views():
         anio =request.GET.get('anio')
         
         if anio==None:
-            anio='2018'
+            anio='2019'
         print('El año de busqueda es '+str(anio))
         if self.denuncias[anio] == None:
             print("Entra a buscar")
