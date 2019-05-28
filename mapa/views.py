@@ -47,7 +47,7 @@ class Views():
         
         if anio==None:
             anio='2019'
-        print('El año de busqueda es '+str(anio))
+        print('El anio de busqueda es '+str(anio))
         if self.denuncias[anio] == None:
             print("Entra a buscar")
             self.denuncias[anio] = self.__dbcontroller.obtener_denuncias_por_barrio(anio)
