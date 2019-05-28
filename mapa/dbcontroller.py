@@ -83,10 +83,10 @@ class Dbcontroller(object):
                 datos_barrio[2] = self.obtener_denuncias_barrio(barrio)
                 datos_barrio[3] = self.obtener_indice_barrio(barrio, denuncias_ciudad)
 
-                datos_barrio[5] = self.obtener_denuncias_barrio_delito(barrio,1)
-                datos_barrio[6] = self.obtener_denuncias_barrio_delito(barrio,2)
-                datos_barrio[7] = self.obtener_denuncias_barrio_delito(barrio,3)
-                datos_barrio[8] = self.obtener_denuncias_barrio_delito(barrio,5)
+                datos_barrio[5] = self.obtener_denuncias_barrio_delito(barrio,Delito.objects.filter(id_delito = 1).first())
+                datos_barrio[6] = self.obtener_denuncias_barrio_delito(barrio,Delito.objects.filter(id_delito = 2).first())
+                datos_barrio[7] = self.obtener_denuncias_barrio_delito(barrio,Delito.objects.filter(id_delito = 3).first())
+                datos_barrio[8] = self.obtener_denuncias_barrio_delito(barrio,Delito.objects.filter(id_delito = 5).first())
 
                 if indice_maximo < datos_barrio[3]:
                     indice_maximo = datos_barrio[3]

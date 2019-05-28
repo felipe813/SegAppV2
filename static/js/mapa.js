@@ -54,7 +54,7 @@ function IngresarComentario() {
 function CambiarAnio() {
   var anio= $('#anio').text().trim();
   //var anio = 2018;
-  alert(anio);
+  //alert(anio);
   $.ajax({
       url : '/mapa/',
       type : 'GET',
@@ -62,7 +62,7 @@ function CambiarAnio() {
       'anio': anio,
       csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),},
       success: function(data){
-        alert("(Y)");
+        //alert("(Y)");
       }
   }
   );
@@ -176,6 +176,7 @@ $(function () {
 // FUNCIONES PARA LLENAR INFORMACIÓN DEL BARRIO
   function llenarInformacion(nombreBarrio, numeroDelitos, indice, denuncias_delitos) {
     document.getElementById('nombreBarrio').innerHTML = nombreBarrio;
+    document.getElementById('indiceMostrado').innerHTML = ' - ' + indice;
     document.getElementById('cantidadHurtos').innerHTML = denuncias_delitos["cantidadHurtos"];
     document.getElementById('cantidadDelitosSexuales').innerHTML = denuncias_delitos["cantidadDelitosSexuales"];
     document.getElementById('cantidadHurtoAutomotores').innerHTML = denuncias_delitos["cantidadHurtoAutomotores"];
