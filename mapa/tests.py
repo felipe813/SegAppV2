@@ -108,8 +108,8 @@ class TestBdController(TestCase):
         dbcontroller = Dbcontroller()
         t = TestModelos()
         t.test_crear_indice()
-        denuncias_sin_indices = dbcontroller.obtener_denuncias_por_barrio()
-        denuncias_con_indices = dbcontroller.obtener_denuncias_por_barrio()
+        denuncias_sin_indices = dbcontroller.obtener_denuncias_por_barrio(2017)
+        denuncias_con_indices = dbcontroller.obtener_denuncias_por_barrio(2017)
         self.assertEqual(denuncias_sin_indices,denuncias_con_indices,"Los resultados son distintos al no haber índices")
     def test_obtener_barrios(self):
         dbcontroller = Dbcontroller()
